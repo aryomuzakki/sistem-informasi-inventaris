@@ -12,13 +12,20 @@ class Barang_controller extends CI_Controller
     parent::__construct();
 
     $this->load->library('form_validation');
-
+    
+    $this->load->library('pdf_generator');
+    
+    $this->load->helper('file');
+    
     $this->load->model('Barang_model');
     $this->load->model('Kategori_model');
 
     $this->barang = new Barang_model;
     $this->kategori = new Kategori_model;
 
+    if ($this->session->has_userdata('login') == FALSE ) {
+      redirect(base_url('login'));
+    }
   }
 
   public function index()
@@ -42,6 +49,7 @@ class Barang_controller extends CI_Controller
   public function create()
   {
     $data['kategori'] = $this->kategori->get_all();
+    $data['id_kategori'] = $_GET['k'];
     
     $this->load->view('theme/header');
     $this->load->view('barang/create', $data);
@@ -103,5 +111,46 @@ class Barang_controller extends CI_Controller
   {
     $this->barang->delete_barang($id);
     $this->session->set_flashdata('message', 'Data Barang Berhasil Dihapus');
+  }
+  
+  public function export()
+  {    
+    if (isset($_POST['exportData'])) {
+      
+      $postJson = $_POST['exportData'];
+      $postObj = json_decode($postJson);
+
+      $data = array(
+        'page_title' => $postObj->page_title,
+        'heading' => $postObj->page_title,
+        'data' => $postObj->data,
+      );
+      
+      $nama_file = $postObj->page_title;
+
+      $html = $this->load->view('export', $data, true);
+      
+    } else {
+      $nama_file = "Laporan Data Barang";
+      $data['page_title'] = $nama_file;
+      $data['data'] = $this->barang->get_all();
+      $html = $this->load->view('export', $data, true);
+    }
+
+    date_default_timezone_set('Asia/Jakarta');
+
+    setlocale(LC_TIME, 'IND');
+
+    $nama_file .= " - " . strftime('%d %B %Y, %H.%M.%S');
+
+    // echo $html;
+    // $this->pdf_generator->generate($html, $nama_file, 'A4', 'potrait', TRUE);
+    
+    $pdf_output = $this->pdf_generator->generate($html, $nama_file, 'A4', 'potrait', false);
+    write_file('./public/pdf/' . $nama_file . '.pdf', $pdf_output);
+
+    $filepath = base_url('/public/pdf/' . $nama_file . '.pdf');
+    echo $filepath;
+
   }
 }

@@ -30,8 +30,6 @@ class Welcome extends CI_Controller {
     
     $this->load->model('Barang_model');
     $this->load->model('Kategori_model');
-    // $this->load->model('BarangModel', 'barang');
-    // $this->load->model('KategoriModel', 'kategori');
 
     $this->barang = new Barang_model;
     $this->kategori = new Kategori_model;
@@ -44,9 +42,9 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
     $data = array(
-      'barang_rows'      =>  $this->barang->rows_count(),
-      'kategori_rows'        =>  $this->kategori->rows_count(),
-      'kategori_all'        =>  $this->kategori->get_all()
+      'barang_rows' => $this->barang->rows_count(),
+      'kategori_rows' => $this->kategori->rows_count(),
+      'kategori_all' => $this->kategori->get_all()
     );
 
 		$this->load->view('theme/header');

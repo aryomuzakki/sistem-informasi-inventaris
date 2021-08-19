@@ -63,7 +63,7 @@
         )
     }
     function doAjaxGrafikBarang(){
-        let _kategori   =   ($('#kategori').val() == '') ? ' ';
+        let _kategori   =   $('#kategori').val();
         let _status     =   $('#status').val();
 
         $.ajax({

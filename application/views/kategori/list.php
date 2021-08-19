@@ -45,6 +45,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td><?= $data->nama_kategori; ?></td>
                     <td>
                       <div class="d-flex">
+                        <a class="btn btn-primary m-1" href="<?php echo base_url('barang/create?k=' . $data->id) ?>">
+                          <form action="<?php echo base_url('barang/create') ?>" method="post">
+                            <input type="text" name="id_kategori" value="<?= $data->id ?>" hidden>
+                            <i class="fas fa-plus"></i>
+                          </form>
+                        </a>
                         <a class="btn btn-primary m-1" href="<?php echo base_url('kategori/edit/' . $data->id) ?>">
                           <i class="fas fa-pen"></i>
                         </a>

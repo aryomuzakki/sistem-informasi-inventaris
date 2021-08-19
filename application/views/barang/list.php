@@ -20,11 +20,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="card-header">
+          <div class="card-header d-flex">
             <!-- <h3 class="card-title">DataTable with default features</h3> -->
             <a class="btn btn-success" href="<?php echo base_url('barang/create') ?>">
               <i class="fas fa-plus mr-1"></i>
               Tambah Data Baru
+            </a>
+            <a class="export-btn btn btn-info ml-auto" href="<?php echo base_url('barang/export') ?>" target="_blank">
+              <i class="fas fa-print mr-1"></i>
+              Export to PDF
             </a>
           </div>
           <!-- /.card-header -->
@@ -57,7 +61,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <td><?= $data->status; ?></td>
                     <td><?= $data->keterangan; ?></td>
                     <td>
-                      <!-- <form class="form-delete""> -->
                       <div class="d-flex">
                         <a class="btn btn-primary m-1" href="<?php echo base_url('barang/edit/' . $data->id) ?>">
                           <i class="fas fa-pen"></i>
@@ -65,12 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <a class="btn btn-danger m-1 delete-btn " href="#">
                           <i class="fas fa-trash"></i>
                         </a>
-                        <!-- <input name='id' type="text" value="<?= $data->id ?>" hidden>
-                        <button type="submit" class="btn btn-danger m-1 delete-btn">
-                          <i class="fas fa-trash"></i>
-                        </button> -->
                       </div>
-                      <!-- </form> -->
                     </td>
                   </tr>
                 <?php } ?>
@@ -83,5 +81,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
+</section>
+<!-- /.content-header -->
+
+<section class="content test" hidden>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Pratinjau</h3>
+          </div>
+          <div class="card-body">
+            <div class="pdf-area">
+              <iframe src="" width="100%" height="800px"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
+</section>
+
+

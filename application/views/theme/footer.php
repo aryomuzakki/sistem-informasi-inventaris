@@ -8,6 +8,27 @@
   </div>
   <!-- ./wrapper -->
 
+  <style>
+    .spinner {
+      background-color: rgba(0, 0, 0, .6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      z-index: 1100;
+    }
+  </style>
+
+  <div class="spinner">
+    Sedang melakukan export . . .
+    <i class="fas fa-spinner"></i>
+  </div>
+
   <!-- jQuery -->
   <script src="<?= base_url() ?>public/plugins/jquery/jquery.min.js"></script>
   

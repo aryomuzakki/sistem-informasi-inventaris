@@ -65,7 +65,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <select name="id_kategori" class="form-control select-kategori" style="width: 100%;">
                   <option></option>
                   <?php foreach ($kategori as $k_data) { ?>
-                    <option value="<?= $k_data->id ?>" <?= ($k_data->id == set_value('id_kategori')) ? 'selected="selected"' : ''; ?> ><?= $k_data->nama_kategori ?></option>
+                    <option value="<?= $k_data->id ?>" <?= ($k_data->id == set_value('id_kategori')) ? 'selected="selected"' : (($k_data->id == $id_kategori) ? 'selected="selected"' : '') ; ?> ><?= $k_data->nama_kategori ?></option>
                   <?php } ?>
                 </select>
               </div>

@@ -63,6 +63,7 @@ $route['barang/create/action']['post'] = "Barang_controller/store";
 $route['barang/edit/(:any)'] = "Barang_controller/edit/$1";
 $route['barang/update/(:any)']['post'] = "Barang_controller/update/$1";
 $route['barang/delete/(:any)']['delete'] = "Barang_controller/delete/$1";
+$route['barang/export'] = "Barang_controller/export";
 
 $route['kategori'] = 'Kategori_controller';
 $route['kategori/create'] = "Kategori_controller/create";
